@@ -14,3 +14,10 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
+    limma,
+    S4Vectors,
+    SingleCellExperiment,
+    stats,
+    SummarizedExperiment,
+    utils,
+    uwot
