@@ -21,10 +21,11 @@ devtools::install_github("ETH-NEXUS/scROSHI")
 
 ## Example
 
-This is a basic example for the Wilcox test function:
+This is a basic example for the scROSHI function:
 
 ``` r
 library(scROSHI)
-f_my_wilcox_test(rnorm(10,1,2),rnorm(10,5,2))
-#> [1] 1
+#results <- scROSHI(sce_data = sce,
+#                   celltype_lists = path_gmx,
+#                   type_config = celltype_config)
 ```
