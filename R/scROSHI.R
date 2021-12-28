@@ -8,7 +8,8 @@ scROSHI <- function(sce_data,
                     thresh_unknown=0.05,
                     thresh_uncert=0.1,
                     thresh_uncert_second=0.8,
-                    verbose=0){
+                    verbose=0,
+                    output="sce"){#"sce","df"
   ## load celltype gene list -> all types in one file, subtype distinction via config file
   if (is.list(celltype_lists)){
     cell.type <- celltype_lists
@@ -226,6 +227,13 @@ scROSHI <- function(sce_data,
     print(sce_data)
   }
   ## write final celltype to disk
-  res <- SummarizedExperiment::colData(sce_data)[, c("barcodes", "celltype_final")]
+  if(output == "sce"){
+    res <- sce_data
+  }
+  if(output == "df"){
+    res <- SummarizedExperiment::colData(sce_data)[, c("barcodes", "celltype_final")]
+    res <- as.data.frame(res)
+    rownames(res) <- NULL
+  }
   return(res)
 }
