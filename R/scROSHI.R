@@ -7,9 +7,12 @@ scROSHI <- function(sce_data,
                     n_nn=5,
                     thresh_unknown=0.05,
                     thresh_uncert=0.1,
-                    thresh_uncert_second=0.8){
+                    thresh_uncert_second=0.8,
+                    verbose=0){
   ## load celltype gene list -> all types in one file, subtype distinction via config file
-  if (endsWith(celltype_lists, ".gmt")) {
+  if (is.list(celltype_lists)){
+    cell.type <- celltype_lists
+  } else if (endsWith(celltype_lists, ".gmt")) {
     tmp <- readLines(celltype_lists)
     tmp <- lapply(tmp, function(x) strsplit(x, "\\\t")[[1]])
     names(tmp) <- sapply(tmp, function(x) x[1])
@@ -18,20 +21,23 @@ scROSHI <- function(sce_data,
     cell.type <- utils::read.table(celltype_lists, sep = "\t", head = T, stringsAsFactors = F)
     cell.type <- apply(cell.type[-1, ], 2, function(x) x[x != ""])
   } else {
-    print("Error. File type of cell type list must be either .gmt or .gmx.")
-    quit(status = 1)
+    stop("Error. File type of cell type list must be either .gmt or .gmx.")
   }
 
   all.ct.genes <- as.character(unlist(cell.type))
   nr.genes <- sapply(cell.type, length)
-  cat("\n\nNumber of genes on each cell type list:\n\n")
-  print(nr.genes)
-  cat("\n\n")
+  if(verbose == 1){
+    cat("\n\nNumber of genes on each cell type list:\n\n")
+    print(nr.genes)
+    cat("\n\n")
+  }
 
   # celltype config file, sub types are individual for each major type
   major_types <- type_config$Major
-  print("str(major_types):")
-  print(utils::str(major_types))
+  if(verbose == 1){
+    print("str(major_types):")
+    print(utils::str(major_types))
+  }
   minor_types <- lapply(type_config$Subtype, function(x) strsplit(x, ",")[[1]])
   names(minor_types) <- type_config$Major
   # remove "none"
@@ -43,8 +49,10 @@ scROSHI <- function(sce_data,
   idx <- sapply(minor_types, length)
   minor_types <- minor_types[idx > 0]
   # final list
-  print("str(minor_types):")
-  print(utils::str(minor_types))
+  if(verbose == 1){
+    print("str(minor_types):")
+    print(utils::str(minor_types))
+  }
   # Keep list of all possible final cell types
   all_celltypes_full_ct_name <- apply(type_config, 1, function(x) paste(x, collapse = ","))
   all_celltypes_full_ct_name <- paste(all_celltypes_full_ct_name, collapse = ",")
@@ -101,8 +109,10 @@ scROSHI <- function(sce_data,
   SummarizedExperiment::colData(sce_data)$celltype_major_full_ct_name <- first.class$cell.type
   SummarizedExperiment::colData(sce_data)$celltype_major <- as.factor(gsub(pattern = "([^_]+)_.*", "\\1", first.class$cell.type))
   all.major.types <- sort(c(S4Vectors::metadata(sce_data)$all_major_types, "uncertain", "unknown"))
-  cat("\n\nall.major.types in alphabetical order:\n\n")
-  print(all.major.types)
+  if(verbose == 1){
+    cat("\n\nall.major.types in alphabetical order:\n\n")
+    print(all.major.types)
+  }
   sce_data$celltype_major <- factor(sce_data$celltype_major, levels = all.major.types)
   #major score
   bad <- apply(first.score, 2, function(x) length(unique(x)))
@@ -145,8 +155,10 @@ scROSHI <- function(sce_data,
   vote.ct <- apply(uu.nn.ct[id_unclear, , drop = F], 1, f.vote)
   # replace "unknown" and "uncertain" with the majority celltype of their nearest neighbors
   prelim.celltype[idx[id_unclear]] <- vote.ct
-  cat("\nResults of first cell type classification:\n\n")
-  as.matrix(table(sce_data$celltype_major_full_ct_name))
+  if(verbose == 1){
+    cat("\nResults of first cell type classification:\n\n")
+    as.matrix(table(sce_data$celltype_major_full_ct_name))
+  }
 
   # perform second celltyping
   # prefill final ct column with results of major cell type classification
@@ -155,7 +167,9 @@ scROSHI <- function(sce_data,
   for (ii in seq_len(length(minor_types))) {
     # for each major cell type with minor defined, get all cells with this major cell type as prelim.celltype
     idy <- which(prelim.celltype %in% names(minor_types)[ii])
-    cat("\n\nPerform second cell typing for", length(idy), "cells of major type:   ", names(minor_types)[ii], "\n")
+    if(verbose == 1){
+      cat("\n\nPerform second cell typing for", length(idy), "cells of major type:   ", names(minor_types)[ii], "\n")
+    }
     if (length(idy) > 0) {
       these.cells <- sce_data[, idy]
       these_major <- these.cells$celltype_major_full_ct_name
@@ -163,7 +177,9 @@ scROSHI <- function(sce_data,
       these.ct <- these.ct[!is.na(these.ct)]
       second.score <- f_score_ctgenes_U(these.cells, cell.type[these.ct], min_genes)
       second.class <- f_annot_ctgenes(second.score, thresh_unknown, thresh_uncert_second)
-      table(second.class$cell.type)
+      if(verbose == 1){
+        table(second.class$cell.type)
+      }
       # cells with (second) label "unknown", "uncertain" keep the original first.class as final cell type
       idx <- which(second.class$cell.type %in% c("unknown", "uncertain"))
       if (length(idx) > 0) second.class$cell.type[idx] <- as.character(these_major[idx])
@@ -176,13 +192,15 @@ scROSHI <- function(sce_data,
 
   SummarizedExperiment::colData(sce_data)$celltype_final <- gsub(pattern = "([^_]+)_.*", "\\1", SummarizedExperiment::colData(sce_data)$celltype_final_full_ct_name)
   all.cell.types <- sort(c(S4Vectors::metadata(sce_data)$all_celltypes, "uncertain", "unknown"))
-  print("all.cell.types in alphabetical order:")
-  print(all.cell.types)
-  sce_data$celltype_final <- factor(sce_data$celltype_final, levels = all.cell.types)
-  cat("\n\nsce_data$celltype_final after second cell typing:\n\n")
-  as.matrix(table(sce_data$celltype_final))
-  cat("\nAdapted first cell type classification:\n\n")
-  as.matrix(table(sce_data$celltype_major_full_ct_name))
+  if(verbose ==1){
+    print("all.cell.types in alphabetical order:")
+    print(all.cell.types)
+    sce_data$celltype_final <- factor(sce_data$celltype_final, levels = all.cell.types)
+    cat("\n\nsce_data$celltype_final after second cell typing:\n\n")
+    as.matrix(table(sce_data$celltype_final))
+    cat("\nAdapted first cell type classification:\n\n")
+    as.matrix(table(sce_data$celltype_major_full_ct_name))
+  }
   # have colData(sce_data)$celltype_final_full_ct_name as factors
   all.cell.types.full <- sort(c(S4Vectors::metadata(sce_data)$all_celltypes_full_ct_name, "uncertain", "unknown"))
   # print("all.cell.types.full in alphabetical order:")
@@ -195,16 +213,18 @@ scROSHI <- function(sce_data,
 
   # remove cells that are in cluster 0
   mask_keep_cells <- SummarizedExperiment::colData(sce_data)$phenograph_clusters != 0
-  cat("\n\nNumber of cells that remain after filtering out cluster 0:\n\n")
-  print(sum(mask_keep_cells))
-  cat("\n\nsce object before filtering out cells that are in cluster 0:\n\n")
-  print(sce_data)
-
+  if(verbose == 1){
+    cat("\n\nNumber of cells that remain after filtering out cluster 0:\n\n")
+    print(sum(mask_keep_cells))
+    cat("\n\nsce object before filtering out cells that are in cluster 0:\n\n")
+    print(sce_data)
+  }
   sce_data <- sce_data[, mask_keep_cells]
   SingleCellExperiment::reducedDims(sce_data)$phenodist <- SingleCellExperiment::reducedDims(sce_data)$phenodist[, mask_keep_cells]
-  cat("\n\nsce object after filtering out cells that are in cluster 0:\n\n")
-  print(sce_data)
-
+  if(verbose == 1){
+    cat("\n\nsce object after filtering out cells that are in cluster 0:\n\n")
+    print(sce_data)
+  }
   ## write final celltype to disk
   res <- SummarizedExperiment::colData(sce_data)[, c("barcodes", "celltype_final")]
   return(res)
