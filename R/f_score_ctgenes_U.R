@@ -8,21 +8,29 @@
 #' @export
 #'
 #' @examples
-f_score_ctgenes_U <- function(sce, gset, min_genes = 5) {
-  cat("\nCalculate scores for cell type classification.")
+f_score_ctgenes_U <- function(sce, gset, min_genes = 5,verbose = 0) {
+  if(verbose ==1){
+    cat("\nCalculate scores for cell type classification.")
+  }
   # gset = cell.type[these.ct]
   # sce = these.cells
   # min_genes = 5
   # select count table with all.ct.genes
   all.genes <- unique(as.character(unlist(gset)))
-  cat("\n\nNumber of genes on cell type specific lists:", length(all.genes))
+  if(verbose == 1){
+    cat("\n\nNumber of genes on cell type specific lists:", length(all.genes))
+  }
   # count matrix including all cells and only the cell type specific genes
   mat <- SummarizedExperiment::assay(sce, "normcounts")[SingleCellExperiment::rowData(sce)$SYMBOL %in% all.genes, , drop = F]
-  cat("\n\nNumber of genes included in matrix:", dim(mat)[1])
+  if(verbose ==1){
+    cat("\n\nNumber of genes included in matrix:", dim(mat)[1])
+  }
   # keep genes only if they have counts in at least one cell
   keep <- rowSums(mat)
   mat <- mat[keep > 0, , drop = F]
-  cat("\n\nNumber of genes with with a sum of counts > 0:", dim(mat)[1], "\n\n\n")
+  if(verbose ==1){
+    cat("\n\nNumber of genes with with a sum of counts > 0:", dim(mat)[1], "\n\n\n")
+  }
   colnames(mat) <- sce$barcodes
   # get row index of dd for each gene in a list of celltypes
   idxs <- limma::ids2indices(gene.sets = gset, rownames(mat), remove.empty = F)

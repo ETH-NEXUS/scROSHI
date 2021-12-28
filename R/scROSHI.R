@@ -102,7 +102,7 @@ scROSHI <- function(sce_data,
     }
   }
   # perform the first celltyping
-  first.score <- f_score_ctgenes_U(sce_data, cell.type[major_types], min_genes)
+  first.score <- f_score_ctgenes_U(sce_data, cell.type[major_types], min_genes,verbose=verbose)
   first.class <- f_annot_ctgenes(first.score, thresh_unknown, thresh_uncert)
   first.class$cell.type <- factor(first.class$cell.type, levels = c(major_types, "unknown", "uncertain"))
   # attach major celltype to SCE object
@@ -175,7 +175,7 @@ scROSHI <- function(sce_data,
       these_major <- these.cells$celltype_major_full_ct_name
       these.ct <- match(minor_types[[ii]], names(cell.type))
       these.ct <- these.ct[!is.na(these.ct)]
-      second.score <- f_score_ctgenes_U(these.cells, cell.type[these.ct], min_genes)
+      second.score <- f_score_ctgenes_U(these.cells, cell.type[these.ct], min_genes,verbose=verbose)
       second.class <- f_annot_ctgenes(second.score, thresh_unknown, thresh_uncert_second)
       if(verbose == 1){
         table(second.class$cell.type)
