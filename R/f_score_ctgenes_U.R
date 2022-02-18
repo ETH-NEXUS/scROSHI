@@ -4,10 +4,13 @@
 #' @param gset gene set
 #' @param min_genes minimum number of genes
 #'
-#' @return
 #' @export
 #'
 #' @examples
+#' #' \dontrun{
+#' result <- f_score_ctgenes_U(sce, gset, min_genes = 5,verbose = 0)
+#' }
+
 f_score_ctgenes_U <- function(sce, gset, min_genes = 5,verbose = 0) {
   if(verbose ==1){
     cat("\nCalculate scores for cell type classification.")

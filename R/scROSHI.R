@@ -1,3 +1,48 @@
+#' Robust supervised hierarchical identification of single cells
+#'
+#'@description
+#' scROSHI identifies cell types based on expression profiles of single cell analysis by
+#' utilizing previously obtained cell type specific gene sets. It takes into account the
+#' hierarchical nature of cell type relationship and does not require training or
+#' annotated data.
+#'
+#' @param sce_data A SingleCellExperiment object containing the expression
+#' profiles of the single cell analysis
+#' @param celltype_lists Marker gene list for all cell types. It can be provided
+#' as a list of genes with cell types as names or as a path to a file containing the
+#' marker genes. Supported file formats are .gmt or .gmx files.
+#' @param type_config Config file to define major cell types and hierarchical subtypes.
+#' It should be provided as a two-column data.frame where the first column are the
+#' major cell types and the second column are the subtypes. If several subtypes exists
+#' they should be separated by comma.
+#' @param min_genes scROSHI filters out non-unique genes as long as more than min_genes
+#' are left. If there is a cell type that has less than min_genes genes it will be
+#' replaced with the cell type list BEFORE filtering for unique genes (default 5)
+#' @param min_var minimum variance for highly variable genes (default 1.5)
+#' @param n_top_genes maximum number of highly variable genes (default 2000)
+#' @param n_nn number of nearest neighbors for umap for assignment of celltypes
+#' (default 5)
+#' @param thresh_unknown If none of the probabilities is above this threshold,
+#' the cell type label is assigned to the class unknown (default 0.05)
+#' @param thresh_uncert If the ratio between the largest and the second largest
+#' probability is below this threshold the cell type label is assigned to the
+#' class uncertain for the major cell types (default 0.1)
+#' @param thresh_uncert_second If the ratio between the largest and the second largest
+#' probability is below this threshold the cell type label is assigned to the
+#' class uncertain for the subtypes (default 0.8)
+#' @param verbose Level of verbosity. Zero means silent, one makes a verbose output.
+#' @param output Defines the output. sce: The output is a SingleCellExperiment
+#' object with the cell types appended to the meta data. df: The output id a
+#' data.frame with two columns. The first column contains the barcode of the cell
+#' and the second column contains the cell type labels.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' result <- scROSHI(sce_data,markerList,conf,output = "sce")
+#' }
+
 scROSHI <- function(sce_data,
                     celltype_lists,
                     type_config,

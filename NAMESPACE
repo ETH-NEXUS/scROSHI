@@ -3,3 +3,4 @@
 export(f_annot_ctgenes)
 export(f_my_wilcox_test)
 export(f_score_ctgenes_U)
+export(scROSHI)

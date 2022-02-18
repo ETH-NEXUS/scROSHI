@@ -4,7 +4,7 @@
 \alias{f_score_ctgenes_U}
 \title{Calculate celltype score: U-test}
 \usage{
-f_score_ctgenes_U(sce, gset, min_genes = 5)
+f_score_ctgenes_U(sce, gset, min_genes = 5, verbose = 0)
 }
 \arguments{
 \item{sce}{sce object}
@@ -13,9 +13,11 @@ f_score_ctgenes_U(sce, gset, min_genes = 5)
 
 \item{min_genes}{minimum number of genes}
 }
-\value{
-
-}
 \description{
 Calculate celltype score: U-test
+}
+\examples{
+#' \dontrun{
+result <- f_score_ctgenes_U(sce, gset, min_genes = 5,verbose = 0)
+}
 }
