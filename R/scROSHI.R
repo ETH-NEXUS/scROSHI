@@ -276,7 +276,7 @@ scROSHI <- function(sce_data,
     res <- sce_data
   }
   if(output == "df"){
-    res <- SummarizedExperiment::colData(sce_data)[, c("barcodes", "celltype_final")]
+    res <- SummarizedExperiment::colData(sce_data)[, c("barcodes", "celltype_major", "celltype_final")]
     res <- as.data.frame(res)
     rownames(res) <- NULL
   }
