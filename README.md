@@ -4,7 +4,6 @@
 # scROSHI
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 scROSHI identifies cell types based on expression profiles of single
@@ -28,18 +27,18 @@ This is a basic example for the scROSHI function
 
 scROSHI requires three input objects:
 
-*sce\_data*
+*sce_data*
 
 A SingleCellExperiment object containing the expression profiles of the
 single cell analysis
 
-*celltype\_lists*
+*celltype_lists*
 
 Marker gene list for all cell types. It can be provided as a list of
 genes with cell types as names or as a path to a file containing the
 marker genes. Supported file formats are .gmt or .gmx files.
 
-*type\_config*
+*type_config*
 
 Config file to define major cell types and hierarchical subtypes. It
 should be provided as a two-column data.frame where the first column are
@@ -48,7 +47,25 @@ subtypes exists they should be separated by comma.
 
 ``` r
 library(scROSHI)
-#results <- scROSHI(sce_data = sce,
-#                   celltype_lists = path_gmx,
-#                   type_config = celltype_config)
+data("test_sce_data")
+data("config")
+data("marker_list")
+
+results <- scROSHI(sce_data = test_sce_data,
+                  celltype_lists = marker_list,
+                  type_config = config)
+table(results$celltype_final)
+#> 
+#>                      B.cells                B.cells.naive 
+#>                            4                          180 
+#>            B.cells.precursor              Dendritic.cells 
+#>                           40                           40 
+#>                    Monocytes                     NK.cells 
+#>                          233                          219 
+#>                 Plasma.cells Plasmacytoid.dendritic.cells 
+#>                           13                           11 
+#>                      T.cells                  T.cells.CD4 
+#>                           60                          415 
+#>                  T.cells.CD8                    uncertain 
+#>                           76                           25
 ```

@@ -46,9 +46,14 @@ Marker gene list for all cell types. It can be provided as a list of genes with 
 
 Config file to define major cell types and hierarchical subtypes. It should be provided as a two-column data.frame where the first column are the major cell types and the second column are the subtypes. If several subtypes exists they should be separated by comma.
 
-```{r example}
+```{r example,message=FALSE,warning=FALSE}
 library(scROSHI)
-#results <- scROSHI(sce_data = sce,
-#                   celltype_lists = path_gmx,
-#                   type_config = celltype_config)
+data("test_sce_data")
+data("config")
+data("marker_list")
+
+results <- scROSHI(sce_data = test_sce_data,
+                  celltype_lists = marker_list,
+                  type_config = config)
+table(results$celltype_final)
 ```
