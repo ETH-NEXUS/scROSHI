@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-scROSHI identifies cell types based on expression profiles of single cell analysis by utilizing previously obtained cell type specific gene sets. It takes into account the hierarchical nature of cell type relationship and does not require training or annotated data.
+scROSHI identifies cell types based on expression profiles of single cell analysis by utilizing previously obtained cell type specific gene sets. It takes into account the hierarchical nature of cell type relationship and does not require training or annotated data. A detailed description of the method can be found at: Prummer et al. 2022. "scROSHI - robust supervised hierarchical identification of single cells". bioRxiv. https://www.biorxiv.org/content/10.1101/2022.04.05.487176v1
 
 ## Installation
 
