@@ -50,7 +50,7 @@ f_score_profile_cor = function(sce, lprof, min_genes = 5, verbose = 0) {
       # perform correlation test using gene x cell matrix <m_cnt> and 
       # celltype list of named (gene) expression vectors lprof.
       id_match = match(names(this_cell), names(this_prof))
-      cor.test(this_cell, this_profile[id_match], alternative="greater", method="spearman", exact=F)$p.value
+      #cor.test(this_cell, this_profile[id_match], alternative="greater", method="spearman", exact=F)$p.value
       m_cts[jj, kk] = f_my_correlation_test(this_cell, this_profile[id_match], min_genes = 5)
     }
   
