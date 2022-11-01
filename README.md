@@ -18,7 +18,7 @@ cells”. bioRxiv.
 ## Installation
 
 You can install the development version from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/) (required R version \>= 3.6) with:
 
 ``` r
 # install.packages("devtools")
