@@ -1,7 +1,7 @@
 #' Calculate celltype score: U-test
 #'
 #' @param sce sce object
-#' @param gset gene set
+#' @param gset gene set list
 #' @param min_genes minimum number of genes
 #'
 #' @export
