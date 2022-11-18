@@ -15,6 +15,8 @@
 #' It should be provided as a two-column data.frame where the first column are the
 #' major cell types and the second column are the subtypes. If several subtypes exists
 #' they should be separated by comma.
+#' @param gene_symbol Variable name in the row data of the sce object containing the gene names
+#' @param count_data Assay name in the sce object containing the count data
 #' @param min_genes scROSHI filters out non-unique genes as long as more than min_genes
 #' are left. If there is a cell type that has less than min_genes genes it will be
 #' replaced with the cell type list BEFORE filtering for unique genes (default 5)
@@ -46,6 +48,8 @@
 scROSHI <- function(sce_data,
                     celltype_lists,
                     type_config,
+                    count_data = "normcounts",
+                    gene_symbol = "SYMBOL",
                     min_genes=5,
                     min_var=1.5,
                     n_top_genes=2000,
@@ -148,7 +152,12 @@ scROSHI <- function(sce_data,
     }
   }
   # perform the first celltyping
-  first.score <- f_score_ctgenes_U(sce_data, cell.type[major_types], min_genes,verbose=verbose)
+  first.score <- f_score_ctgenes_U(sce = sce_data,
+                                   gset = cell.type[major_types],
+                                   count_data = count_data,
+                                   gene_symbol = gene_symbol,
+                                   min_genes = min_genes,
+                                   verbose = verbose)
   first.class <- f_annot_ctgenes(first.score, thresh_unknown, thresh_uncert)
   first.class$cell.type <- factor(first.class$cell.type, levels = c(major_types, "unknown", "uncertain"))
   # attach major celltype to SCE object
@@ -221,7 +230,12 @@ scROSHI <- function(sce_data,
       these_major <- these.cells$celltype_major_full_ct_name
       these.ct <- match(minor_types[[ii]], names(cell.type))
       these.ct <- these.ct[!is.na(these.ct)]
-      second.score <- f_score_ctgenes_U(these.cells, cell.type[these.ct], min_genes,verbose=verbose)
+      second.score <- f_score_ctgenes_U(sce = these.cells,
+                                        gset = cell.type[these.ct],
+                                        count_data = count_data,
+                                        gene_symbol = gene_symbol,
+                                        min_genes = min_genes,
+                                        verbose = verbose)
       second.class <- f_annot_ctgenes(second.score, thresh_unknown, thresh_uncert_second)
       if(verbose == 1){
         table(second.class$cell.type)

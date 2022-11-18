@@ -3,15 +3,17 @@
 #' @param sce sce object
 #' @param gset gene set list
 #' @param min_genes minimum number of genes
+#' @param gene_symbol Variable name in the row data of the sce object containing the gene names
+#' @param count_data Assay name in the sce object containing the count data
 #'
 #' @export
 #'
 #' @examples
-#' #' \dontrun{
-#' result <- f_score_ctgenes_U(sce, gset, min_genes = 5,verbose = 0)
+#' \dontrun{
+#' result <- f_score_ctgenes_U(sce, gset, count_data = "normcounts", gene_symbol = "SYMBOL", min_genes = 5,verbose = 0)
 #' }
 
-f_score_ctgenes_U <- function(sce, gset, min_genes = 5,verbose = 0) {
+f_score_ctgenes_U <- function(sce, gset, count_data = "normcounts", gene_symbol = "SYMBOL", min_genes = 5,verbose = 0) {
   if(verbose ==1){
     cat("\nCalculate scores for cell type classification.")
   }
@@ -24,7 +26,7 @@ f_score_ctgenes_U <- function(sce, gset, min_genes = 5,verbose = 0) {
     cat("\n\nNumber of genes on cell type specific lists:", length(all.genes))
   }
   # count matrix including all cells and only the cell type specific genes
-  mat <- SummarizedExperiment::assay(sce, "normcounts")[SingleCellExperiment::rowData(sce)$SYMBOL %in% all.genes, , drop = F]
+  mat <- SummarizedExperiment::assay(sce, count_data)[SingleCellExperiment::rowData(sce)[,gene_symbol] %in% all.genes, , drop = F]
   if(verbose ==1){
     cat("\n\nNumber of genes included in matrix:", dim(mat)[1])
   }

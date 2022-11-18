@@ -4,10 +4,12 @@
 #' @param unknown threshold unknown
 #' @param uncertain threshold uncertain
 #'
-#' @return
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' result <- f_annot_ctgenes(m.cts, unknown, uncertain)
+#' }
 f_annot_ctgenes <- function(m.cts, unknown, uncertain) {
   ct.annot <- apply(m.cts, 2, function(x) names(which.min(x)))
   ct.annot <- data.frame(barcodes = names(ct.annot),

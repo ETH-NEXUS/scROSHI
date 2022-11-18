@@ -4,12 +4,23 @@
 \alias{f_score_ctgenes_U}
 \title{Calculate celltype score: U-test}
 \usage{
-f_score_ctgenes_U(sce, gset, min_genes = 5, verbose = 0)
+f_score_ctgenes_U(
+  sce,
+  gset,
+  count_data = "normcounts",
+  gene_symbol = "SYMBOL",
+  min_genes = 5,
+  verbose = 0
+)
 }
 \arguments{
 \item{sce}{sce object}
 
-\item{gset}{gene set}
+\item{gset}{gene set list}
+
+\item{count_data}{Assay name in the sce object containing the count data}
+
+\item{gene_symbol}{Variable name in the row data of the sce object containing the gene names}
 
 \item{min_genes}{minimum number of genes}
 }
@@ -17,7 +28,7 @@ f_score_ctgenes_U(sce, gset, min_genes = 5, verbose = 0)
 Calculate celltype score: U-test
 }
 \examples{
-#' \dontrun{
-result <- f_score_ctgenes_U(sce, gset, min_genes = 5,verbose = 0)
+\dontrun{
+result <- f_score_ctgenes_U(sce, gset, count_data = "normcounts", gene_symbol = "SYMBOL", min_genes = 5,verbose = 0)
 }
 }

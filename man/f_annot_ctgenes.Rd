@@ -13,9 +13,11 @@ f_annot_ctgenes(m.cts, unknown, uncertain)
 
 \item{uncertain}{threshold uncertain}
 }
-\value{
-
-}
 \description{
 Choose best matching celltype
+}
+\examples{
+\dontrun{
+result <- f_annot_ctgenes(m.cts, unknown, uncertain)
+}
 }

@@ -6,7 +6,6 @@
 #' @param y value 2
 #' @param min_genes minimum genes
 #'
-#' @return
 #' @export
 #'
 #' @examples
