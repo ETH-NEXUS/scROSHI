@@ -23,12 +23,15 @@ f_score_ctgenes_U(
 \item{gene_symbol}{Variable name in the row data of the sce object containing the gene names}
 
 \item{min_genes}{minimum number of genes}
+
+\item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
 }
 \description{
 Calculate celltype score: U-test
 }
 \examples{
 \dontrun{
-result <- f_score_ctgenes_U(sce, gset, count_data = "normcounts", gene_symbol = "SYMBOL", min_genes = 5,verbose = 0)
+result <- f_score_ctgenes_U(sce, gset, count_data = "normcounts",
+ gene_symbol = "SYMBOL", min_genes = 5,verbose = 0)
 }
 }

@@ -12,12 +12,14 @@ f_score_profile_cor(sce, lprof, min_genes = 5, verbose = 0)
 \item{lprof}{list of profiles (= named expression vectors)}
 
 \item{min_genes}{minimum number of genes}
+
+\item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
 }
 \description{
 Calculate celltype score: U-test
 }
 \examples{
-#' \dontrun{
+\dontrun{
 result <- f_score_profile_cor(sce, lprof, min_genes = 5,verbose = 0)
 }
 }

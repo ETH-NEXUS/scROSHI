@@ -5,12 +5,14 @@
 #' @param min_genes minimum number of genes
 #' @param gene_symbol Variable name in the row data of the sce object containing the gene names
 #' @param count_data Assay name in the sce object containing the count data
+#' @param verbose Level of verbosity. Zero means silent, one makes a verbose output.
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' result <- f_score_ctgenes_U(sce, gset, count_data = "normcounts", gene_symbol = "SYMBOL", min_genes = 5,verbose = 0)
+#' result <- f_score_ctgenes_U(sce, gset, count_data = "normcounts",
+#'  gene_symbol = "SYMBOL", min_genes = 5,verbose = 0)
 #' }
 
 f_score_ctgenes_U <- function(sce, gset, count_data = "normcounts", gene_symbol = "SYMBOL", min_genes = 5,verbose = 0) {

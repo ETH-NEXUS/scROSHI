@@ -1,12 +1,12 @@
 Package: scROSHI
-Title: Robust supervised hierarchical identification of single cells
-Version: 0.0.0.9000
+Title: Robust Supervised Hierarchical Identification of Single Cells
+Version: 0.1.0.0
 Authors@R: 
     person(given = "Lars",
            family = "Bosshard",
            role = c("aut", "cre"),
            email = "bosshard@nexus.ethz.ch",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           comment = c(ORCID = "0000-0002-4550-4777"))
 Description: Identifying cell types based on expression profiles is a pillar of single cell analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -22,5 +22,6 @@ Imports:
     utils,
     uwot
 Depends: 
-    R (>= 2.10)
+    R (>= 3.60)
 biocViews:
+LazyDataCompression:xz
