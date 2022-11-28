@@ -11,6 +11,7 @@ scROSHI(
   type_config,
   count_data = "normcounts",
   gene_symbol = "SYMBOL",
+  cell_scores = FALSE,
   min_genes = 5,
   min_var = 1.5,
   n_top_genes = 2000,
@@ -38,6 +39,8 @@ they should be separated by comma.}
 \item{count_data}{Assay name in the sce object containing the count data}
 
 \item{gene_symbol}{Variable name in the row data of the sce object containing the gene names}
+
+\item{cell_scores}{Boolean value determining if the scores should be saved}
 
 \item{min_genes}{scROSHI filters out non-unique genes as long as more than min_genes
 are left. If there is a cell type that has less than min_genes genes it will be

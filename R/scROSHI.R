@@ -17,6 +17,7 @@
 #' they should be separated by comma.
 #' @param gene_symbol Variable name in the row data of the sce object containing the gene names
 #' @param count_data Assay name in the sce object containing the count data
+#' @param cell_scores Boolean value determining if the scores should be saved
 #' @param min_genes scROSHI filters out non-unique genes as long as more than min_genes
 #' are left. If there is a cell type that has less than min_genes genes it will be
 #' replaced with the cell type list BEFORE filtering for unique genes (default 5)
@@ -50,6 +51,7 @@ scROSHI <- function(sce_data,
                     type_config,
                     count_data = "normcounts",
                     gene_symbol = "SYMBOL",
+                    cell_scores = FALSE,
                     min_genes=5,
                     min_var=1.5,
                     n_top_genes=2000,
@@ -58,7 +60,7 @@ scROSHI <- function(sce_data,
                     thresh_uncert=0.1,
                     thresh_uncert_second=0.8,
                     verbose=0,
-                    output="sce"){#"sce","df"
+                    output="sce"){
   ## load celltype gene list -> all types in one file, subtype distinction via config file
   if (is.list(celltype_lists)){
     cell.type <- celltype_lists
@@ -174,8 +176,14 @@ scROSHI <- function(sce_data,
   notbad <- which(bad != 1)
   #first_celltype_scores
   first_celltype_scores <- t(first.score[, notbad])
+  # attach major celltype scores to SCE object
+  if (cell_scores==TRUE){
+    first_ct_scores <- first_celltype_scores
+    colnames(first_ct_scores) <- paste("score_major",colnames(first_ct_scores),sep="_")
+    SummarizedExperiment::colData(sce_data) <- cbind(SummarizedExperiment::colData(sce_data),first_ct_scores)
+  }
   # Rphenograph of celltype-specific genes.
-  tmp <- SummarizedExperiment::assay(sce_data, "pearson_resid")
+  tmp <- SummarizedExperiment::assay(sce_data, count_data)
   idx <- match(all.ct.genes, rownames(tmp))
   idx <- idx[!is.na(idx)]
   tmp <- tmp[idx, ]
@@ -236,6 +244,14 @@ scROSHI <- function(sce_data,
                                         gene_symbol = gene_symbol,
                                         min_genes = min_genes,
                                         verbose = verbose)
+      # attach second celltype scores to SCE object
+      if (cell_scores==TRUE){
+        second_ct_scores <- t(second.score)
+        second_ct_scores_2 <- matrix(NA,ncol=ncol(second_ct_scores),nrow = nrow(SummarizedExperiment::colData(sce_data)))
+        second_ct_scores_2[idy,] <- second_ct_scores
+        colnames(second_ct_scores_2) <- paste("score_subtype",colnames(second_ct_scores),sep="_")
+        SummarizedExperiment::colData(sce_data) <- cbind(SummarizedExperiment::colData(sce_data),second_ct_scores_2)
+      }
       second.class <- f_annot_ctgenes(second.score, thresh_unknown, thresh_uncert_second)
       if(verbose == 1){
         table(second.class$cell.type)
@@ -267,10 +283,6 @@ scROSHI <- function(sce_data,
   # print(all.cell.types.full)
   SummarizedExperiment::colData(sce_data)$celltype_final_full_ct_name <- factor(SummarizedExperiment::colData(sce_data)$celltype_final_full_ct_name, levels = all.cell.types.full)
 
-
-  # keep sce object including cluster 0
-  sce_data_incl_cluster0 <- sce_data
-
   # remove cells that are in cluster 0
   mask_keep_cells <- SummarizedExperiment::colData(sce_data)$phenograph_clusters != 0
   if(verbose == 1){
@@ -289,8 +301,15 @@ scROSHI <- function(sce_data,
   if(output == "sce"){
     res <- sce_data
   }
-  if(output == "df"){
+  if(output == "df"&cell_scores==FALSE){
     res <- SummarizedExperiment::colData(sce_data)[, c("barcodes", "celltype_major", "celltype_final")]
+    res <- as.data.frame(res)
+    rownames(res) <- NULL
+  }
+  if(output == "df"&cell_scores==TRUE){
+    s_major <- colnames(SummarizedExperiment::colData(sce_data))[grep("score_major",colnames(SummarizedExperiment::colData(sce_data)))]
+    s_sub <- colnames(SummarizedExperiment::colData(sce_data))[grep("score_sub",colnames(SummarizedExperiment::colData(sce_data)))]
+    res <- SummarizedExperiment::colData(sce_data)[, c("barcodes", "celltype_major", s_major,  "celltype_final", s_sub)]
     res <- as.data.frame(res)
     rownames(res) <- NULL
   }
