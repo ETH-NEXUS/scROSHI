@@ -283,20 +283,6 @@ scROSHI <- function(sce_data,
   # print(all.cell.types.full)
   SummarizedExperiment::colData(sce_data)$celltype_final_full_ct_name <- factor(SummarizedExperiment::colData(sce_data)$celltype_final_full_ct_name, levels = all.cell.types.full)
 
-  # remove cells that are in cluster 0
-  mask_keep_cells <- SummarizedExperiment::colData(sce_data)$phenograph_clusters != 0
-  if(verbose == 1){
-    cat("\n\nNumber of cells that remain after filtering out cluster 0:\n\n")
-    print(sum(mask_keep_cells))
-    cat("\n\nsce object before filtering out cells that are in cluster 0:\n\n")
-    print(sce_data)
-  }
-  sce_data <- sce_data[, mask_keep_cells]
-  SingleCellExperiment::reducedDims(sce_data)$phenodist <- SingleCellExperiment::reducedDims(sce_data)$phenodist[, mask_keep_cells]
-  if(verbose == 1){
-    cat("\n\nsce object after filtering out cells that are in cluster 0:\n\n")
-    print(sce_data)
-  }
   ## write final celltype to disk
   if(output == "sce"){
     res <- sce_data
