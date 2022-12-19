@@ -2,19 +2,19 @@
 % Please edit documentation in R/f_annot_ctgenes.R
 \name{f_annot_ctgenes}
 \alias{f_annot_ctgenes}
-\title{Choose best matching celltype}
+\title{Choose best matching cell type}
 \usage{
 f_annot_ctgenes(m.cts, unknown, uncertain)
 }
 \arguments{
-\item{m.cts}{celltype score}
+\item{m.cts}{Cell type score}
 
-\item{unknown}{threshold unknown}
+\item{unknown}{Threshold unknown}
 
-\item{uncertain}{threshold uncertain}
+\item{uncertain}{Threshold uncertain}
 }
 \description{
-Choose best matching celltype
+Choose best matching cell type
 }
 \examples{
 \dontrun{

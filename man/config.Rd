@@ -21,6 +21,6 @@ Config file for the test_sce_data set
 Config file to define major cell types and hierarchical subtypes.
 It should be provided as a two-column data.frame where the first column are
 the major cell types and the second column are the subtypes. If several
-subtypes exists they should be separated by comma.
+subtypes exists, they should be separated by comma.
 }
 \keyword{datasets}

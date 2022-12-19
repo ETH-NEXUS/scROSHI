@@ -5,7 +5,7 @@
 #' Config file to define major cell types and hierarchical subtypes.
 #' It should be provided as a two-column data.frame where the first column are
 #' the major cell types and the second column are the subtypes. If several
-#' subtypes exists they should be separated by comma.
+#' subtypes exists, they should be separated by comma.
 #'
 #' @format A data frame with 2 columns and 7 rows
 #'

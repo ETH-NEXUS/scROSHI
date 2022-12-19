@@ -2,9 +2,9 @@
 #'
 #' Calculate spearman correlation p-value or return preset values
 #'
-#' @param x value 1
-#' @param y value 2
-#' @param min_genes minimum genes
+#' @param x Value 1
+#' @param y Value 2
+#' @param min_genes Minimum genes
 #'
 #' @export
 #'

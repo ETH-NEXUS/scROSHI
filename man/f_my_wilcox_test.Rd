@@ -14,7 +14,7 @@ f_my_wilcox_test(x, y, min_genes = 5)
 \item{min_genes}{minimum genes}
 }
 \description{
-Calculate wilcox p-value or return preset values
+Calculate Wilcox p-value or return preset values
 }
 \examples{
 f_my_wilcox_test(rnorm(10,1,2),rnorm(10,5,2))

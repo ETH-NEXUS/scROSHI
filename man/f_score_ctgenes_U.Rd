@@ -2,7 +2,7 @@
 % Please edit documentation in R/f_score_ctgenes_U.R
 \name{f_score_ctgenes_U}
 \alias{f_score_ctgenes_U}
-\title{Calculate celltype score: U-test}
+\title{Calculate cell type score: U-test}
 \usage{
 f_score_ctgenes_U(
   sce,
@@ -16,18 +16,18 @@ f_score_ctgenes_U(
 \arguments{
 \item{sce}{sce object}
 
-\item{gset}{gene set list}
+\item{gset}{Gene set list}
 
 \item{count_data}{Assay name in the sce object containing the count data}
 
 \item{gene_symbol}{Variable name in the row data of the sce object containing the gene names}
 
-\item{min_genes}{minimum number of genes}
+\item{min_genes}{Minimum number of genes}
 
 \item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
 }
 \description{
-Calculate celltype score: U-test
+Calculate cell type score: U-test
 }
 \examples{
 \dontrun{

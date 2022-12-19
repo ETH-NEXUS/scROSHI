@@ -13,7 +13,7 @@ Authors@R:
            email = "prummer@nexus.ethz.ch",
            comment = c(ORCID = "0000-0001-9896-3929")))
 Maintainer: Lars Bosshard <bosshard@nexus.ethz.ch>
-Description: Identifying cell types based on expression profiles is a pillar of single cell analysis. scROSHI identifies cell types based on expression profiles of single cellanalysis by utilizing previously obtained cell type specific gene sets. It takes into accountthe hierarchical nature of cell type relationship and does not require training or annotated data. 
+Description: Identifying cell types based on expression profiles is a pillar of single cell analysis. 'scROSHI' identifies cell types based on expression profiles of single cell analysis by utilizing previously obtained cell type specific gene sets. It takes into account the hierarchical nature of cell type relationship and does not require training or annotated data. A detailed description of the method can be found at: Prummer, Bertolini, Bosshard, Barkmann, Yates, Boeva, The Tumor Profiler Consortium, Stekhoven, and Singer (2022) <doi:10.1101/2022.04.05.487176>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

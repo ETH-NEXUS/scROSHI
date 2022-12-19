@@ -1,4 +1,4 @@
-#' Marker gene list for  the test SCE data Set
+#' Marker gene list for the test SCE data Set
 #'
 #' Marker gene list for the test_sce_data set
 #'

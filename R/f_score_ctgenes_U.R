@@ -1,8 +1,8 @@
-#' Calculate celltype score: U-test
+#' Calculate cell type score: U-test
 #'
 #' @param sce sce object
-#' @param gset gene set list
-#' @param min_genes minimum number of genes
+#' @param gset Gene set list
+#' @param min_genes Minimum number of genes
 #' @param gene_symbol Variable name in the row data of the sce object containing the gene names
 #' @param count_data Assay name in the sce object containing the count data
 #' @param verbose Level of verbosity. Zero means silent, one makes a verbose output.

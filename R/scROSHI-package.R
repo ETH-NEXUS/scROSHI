@@ -1,4 +1,4 @@
-#' Robust supervised hierarchical identification of single cells
+#' Robust Supervised Hierarchical Identification of Single Cells
 #'
 #' Identifying cell types based on expression profiles is a pillar of single cell analysis.
 #'

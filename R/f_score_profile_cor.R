@@ -1,8 +1,8 @@
-#' Calculate celltype score: U-test
+#' Calculate cell type score: U-test
 #'
 #' @param sce sce object
-#' @param lprof list of profiles (= named expression vectors)
-#' @param min_genes minimum number of genes
+#' @param lprof List of profiles (= named expression vectors)
+#' @param min_genes Minimum number of genes
 #' @param verbose Level of verbosity. Zero means silent, one makes a verbose output.
 #'
 #' @export

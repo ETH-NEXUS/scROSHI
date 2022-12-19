@@ -7,11 +7,11 @@
 f_my_correlation_test(x, y, min_genes = 5)
 }
 \arguments{
-\item{x}{value 1}
+\item{x}{Value 1}
 
-\item{y}{value 2}
+\item{y}{Value 2}
 
-\item{min_genes}{minimum genes}
+\item{min_genes}{Minimum genes}
 }
 \description{
 Calculate spearman correlation p-value or return preset values

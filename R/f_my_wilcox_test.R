@@ -1,6 +1,6 @@
 #' Wilcox test
 #'
-#' Calculate wilcox p-value or return preset values
+#' Calculate Wilcox p-value or return preset values
 #'
 #' @param x value 1
 #' @param y value 2

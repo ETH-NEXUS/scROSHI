@@ -2,21 +2,21 @@
 % Please edit documentation in R/f_score_profile_cor.R
 \name{f_score_profile_cor}
 \alias{f_score_profile_cor}
-\title{Calculate celltype score: U-test}
+\title{Calculate cell type score: U-test}
 \usage{
 f_score_profile_cor(sce, lprof, min_genes = 5, verbose = 0)
 }
 \arguments{
 \item{sce}{sce object}
 
-\item{lprof}{list of profiles (= named expression vectors)}
+\item{lprof}{List of profiles (= named expression vectors)}
 
-\item{min_genes}{minimum number of genes}
+\item{min_genes}{Minimum number of genes}
 
 \item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
 }
 \description{
-Calculate celltype score: U-test
+Calculate cell type score: U-test
 }
 \examples{
 \dontrun{

@@ -3,7 +3,7 @@
 \docType{package}
 \name{scROSHI}
 \alias{scROSHI}
-\title{Robust supervised hierarchical identification of single cells}
+\title{Robust Supervised Hierarchical Identification of Single Cells}
 \usage{
 scROSHI(
   sce_data,
@@ -25,7 +25,7 @@ scROSHI(
 }
 \arguments{
 \item{sce_data}{A SingleCellExperiment object containing the expression
-profiles of the single cell analysis}
+profiles of the single cell analysis.}
 
 \item{celltype_lists}{Marker gene list for all cell types. It can be provided
 as a list of genes with cell types as names or as a path to a file containing the
@@ -33,36 +33,36 @@ marker genes. Supported file formats are .gmt or .gmx files.}
 
 \item{type_config}{Config file to define major cell types and hierarchical subtypes.
 It should be provided as a two-column data.frame where the first column are the
-major cell types and the second column are the subtypes. If several subtypes exists
+major cell types and the second column are the subtypes. If several subtypes exists,
 they should be separated by comma.}
 
-\item{count_data}{Assay name in the sce object containing the count data}
+\item{count_data}{Assay name in the sce object containing the count data.}
 
-\item{gene_symbol}{Variable name in the row data of the sce object containing the gene names}
+\item{gene_symbol}{Variable name in the row data of the sce object containing the gene names.}
 
-\item{cell_scores}{Boolean value determining if the scores should be saved}
+\item{cell_scores}{Boolean value determining if the scores should be saved.}
 
 \item{min_genes}{scROSHI filters out non-unique genes as long as more than min_genes
-are left. If there is a cell type that has less than min_genes genes it will be
-replaced with the cell type list BEFORE filtering for unique genes (default 5)}
+are left. If there is a cell type that has less than min_genes genes, it will be
+replaced with the cell type list BEFORE filtering for unique genes (default 5).}
 
-\item{min_var}{minimum variance for highly variable genes (default 1.5)}
+\item{min_var}{Minimum variance for highly variable genes (default 1.5).}
 
-\item{n_top_genes}{maximum number of highly variable genes (default 2000)}
+\item{n_top_genes}{Maximum number of highly variable genes (default 2000).}
 
-\item{n_nn}{number of nearest neighbors for umap for assignment of celltypes
-(default 5)}
+\item{n_nn}{Number of nearest neighbors for umap for assignment of celltypes
+(default 5).}
 
 \item{thresh_unknown}{If none of the probabilities is above this threshold,
-the cell type label is assigned to the class unknown (default 0.05)}
+the cell type label is assigned to the class unknown (default 0.05).}
 
 \item{thresh_uncert}{If the ratio between the largest and the second largest
-probability is below this threshold the cell type label is assigned to the
-class uncertain for the major cell types (default 0.1)}
+probability is below this threshold, the cell type label is assigned to the
+class uncertain for the major cell types (default 0.1).}
 
 \item{thresh_uncert_second}{If the ratio between the largest and the second largest
-probability is below this threshold the cell type label is assigned to the
-class uncertain for the subtypes (default 0.8)}
+probability is below this threshold, the cell type label is assigned to the
+class uncertain for the subtypes (default 0.8).}
 
 \item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
 

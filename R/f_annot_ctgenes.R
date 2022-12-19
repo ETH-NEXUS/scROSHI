@@ -1,8 +1,8 @@
-#' Choose best matching celltype
+#' Choose best matching cell type
 #'
-#' @param m.cts celltype score
-#' @param unknown threshold unknown
-#' @param uncertain threshold uncertain
+#' @param m.cts Cell type score
+#' @param unknown Threshold unknown
+#' @param uncertain Threshold uncertain
 #'
 #' @export
 #'

@@ -3,7 +3,7 @@
 \docType{data}
 \name{marker_list}
 \alias{marker_list}
-\title{Marker gene list for  the test SCE data Set}
+\title{Marker gene list for the test SCE data Set}
 \format{
 Marker gene list for all cell types as a list of genes with cell types as names
 }
