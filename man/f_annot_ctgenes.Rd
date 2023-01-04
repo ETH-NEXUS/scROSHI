@@ -7,17 +7,24 @@
 f_annot_ctgenes(m.cts, unknown, uncertain)
 }
 \arguments{
-\item{m.cts}{Cell type score}
+\item{m.cts}{Matrix containing the cell type scores. The rows represent the cell types, whereas the columns represent the samples.}
 
-\item{unknown}{Threshold unknown}
+\item{unknown}{If none of the probabilities is above this threshold,
+the cell type label is assigned to the class unknown.}
 
-\item{uncertain}{Threshold uncertain}
+\item{uncertain}{If the ratio between the largest and the second largest
+probability is below this threshold, the cell type label is assigned to the
+class uncertain for the major cell types.}
+}
+\value{
+Data frame containing the best matching cell type for each sample.
 }
 \description{
 Choose best matching cell type
 }
 \examples{
-\dontrun{
-result <- f_annot_ctgenes(m.cts, unknown, uncertain)
-}
+m.cts <- matrix(c(0.2,0.001,0.002,0.1),nrow=2)
+colnames(m.cts) <- c("sample1","sample2")
+rownames(m.cts) <- c("cell_type1","cell_type2")
+f_annot_ctgenes(m.cts, 0.05, 0.1)
 }

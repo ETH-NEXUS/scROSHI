@@ -2,20 +2,23 @@
 % Please edit documentation in R/f_my_correlation_test.R
 \name{f_my_correlation_test}
 \alias{f_my_correlation_test}
-\title{Wilcox test}
+\title{Spearman correlation test}
 \usage{
 f_my_correlation_test(x, y, min_genes = 5)
 }
 \arguments{
-\item{x}{Value 1}
+\item{x}{A numeric vector of values.}
 
-\item{y}{Value 2}
+\item{y}{A numeric vector of values.}
 
-\item{min_genes}{Minimum genes}
+\item{min_genes}{A numeric value defining the threshold for the minimum number of genes.}
+}
+\value{
+A numeric value representing the p value of the Spearman correlation test.
 }
 \description{
 Calculate spearman correlation p-value or return preset values
 }
 \examples{
-f_my_wilcox_test(rnorm(10,1,2),rnorm(10,5,2))
+f_my_correlation_test(rnorm(10,1,2),rnorm(10,5,2))
 }

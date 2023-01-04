@@ -36,9 +36,9 @@ It should be provided as a two-column data.frame where the first column are the
 major cell types and the second column are the subtypes. If several subtypes exists,
 they should be separated by comma.}
 
-\item{count_data}{Assay name in the sce object containing the count data.}
+\item{count_data}{Assay name in the SingleCellExperiment object containing the count data.}
 
-\item{gene_symbol}{Variable name in the row data of the sce object containing the gene names.}
+\item{gene_symbol}{Variable name in the row data of the SingleCellExperiment object containing the gene names.}
 
 \item{cell_scores}{Boolean value determining if the scores should be saved.}
 

@@ -1,9 +1,11 @@
 #' Calculate cell type score: U-test
 #'
-#' @param sce sce object
+#' @param sce A SingleCellExperiment object containing the expression
+#' profiles of the single cell analysis.
 #' @param lprof List of profiles (= named expression vectors)
 #' @param min_genes Minimum number of genes
 #' @param verbose Level of verbosity. Zero means silent, one makes a verbose output.
+#' @return Matrix containing the cell type scores.
 #'
 #' @export
 #'

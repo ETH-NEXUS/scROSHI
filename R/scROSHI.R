@@ -15,8 +15,8 @@
 #' It should be provided as a two-column data.frame where the first column are the
 #' major cell types and the second column are the subtypes. If several subtypes exists,
 #' they should be separated by comma.
-#' @param gene_symbol Variable name in the row data of the sce object containing the gene names.
-#' @param count_data Assay name in the sce object containing the count data.
+#' @param gene_symbol Variable name in the row data of the SingleCellExperiment object containing the gene names.
+#' @param count_data Assay name in the SingleCellExperiment object containing the count data.
 #' @param cell_scores Boolean value determining if the scores should be saved.
 #' @param min_genes scROSHI filters out non-unique genes as long as more than min_genes
 #' are left. If there is a cell type that has less than min_genes genes, it will be

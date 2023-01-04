@@ -7,13 +7,17 @@
 f_score_profile_cor(sce, lprof, min_genes = 5, verbose = 0)
 }
 \arguments{
-\item{sce}{sce object}
+\item{sce}{A SingleCellExperiment object containing the expression
+profiles of the single cell analysis.}
 
 \item{lprof}{List of profiles (= named expression vectors)}
 
 \item{min_genes}{Minimum number of genes}
 
 \item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
+}
+\value{
+Matrix containing the cell type scores.
 }
 \description{
 Calculate cell type score: U-test

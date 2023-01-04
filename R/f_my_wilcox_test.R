@@ -2,9 +2,10 @@
 #'
 #' Calculate Wilcox p-value or return preset values
 #'
-#' @param x value 1
-#' @param y value 2
-#' @param min_genes minimum genes
+#' @param x A numeric vector of values.
+#' @param y A numeric vector of values.
+#' @param min_genes A numeric value defining the threshold for the minimum number of genes.
+#' @return A numeric value representing the p value of the Wilcox test.
 #'
 #' @export
 #'

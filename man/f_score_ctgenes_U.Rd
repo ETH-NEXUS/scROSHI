@@ -2,7 +2,7 @@
 % Please edit documentation in R/f_score_ctgenes_U.R
 \name{f_score_ctgenes_U}
 \alias{f_score_ctgenes_U}
-\title{Calculate cell type score: U-test}
+\title{Calculate cell type score}
 \usage{
 f_score_ctgenes_U(
   sce,
@@ -14,24 +14,31 @@ f_score_ctgenes_U(
 )
 }
 \arguments{
-\item{sce}{sce object}
+\item{sce}{A SingleCellExperiment object containing the expression
+profiles of the single cell analysis.}
 
-\item{gset}{Gene set list}
+\item{gset}{Marker gene list for all cell types.}
 
-\item{count_data}{Assay name in the sce object containing the count data}
+\item{count_data}{Assay name in the SingleCellExperiment object containing the count data}
 
-\item{gene_symbol}{Variable name in the row data of the sce object containing the gene names}
+\item{gene_symbol}{Variable name in the row data of the SingleCellExperiment object containing the gene names}
 
 \item{min_genes}{Minimum number of genes}
 
 \item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
 }
+\value{
+Matrix containing the cell type scores. The rows represent the cell types, whereas the columns represent the samples.
+}
 \description{
-Calculate cell type score: U-test
+Calculate cell type score
 }
 \examples{
-\dontrun{
-result <- f_score_ctgenes_U(sce, gset, count_data = "normcounts",
- gene_symbol = "SYMBOL", min_genes = 5,verbose = 0)
+\donttest{
+data("test_sce_data")
+gset <- list(cell_type1 = c("CD79A","TCL1A","VPREB3"),
+cell_type2 = c("FCER1A","CLEC10A","ENHO"))
+tmp <- f_score_ctgenes_U(test_sce_data, gset, count_data = "normcounts",
+gene_symbol = "SYMBOL", min_genes = 3,verbose = 0)
 }
 }

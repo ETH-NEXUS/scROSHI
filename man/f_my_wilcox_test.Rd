@@ -7,11 +7,14 @@
 f_my_wilcox_test(x, y, min_genes = 5)
 }
 \arguments{
-\item{x}{value 1}
+\item{x}{A numeric vector of values.}
 
-\item{y}{value 2}
+\item{y}{A numeric vector of values.}
 
-\item{min_genes}{minimum genes}
+\item{min_genes}{A numeric value defining the threshold for the minimum number of genes.}
+}
+\value{
+A numeric value representing the p value of the Wilcox test.
 }
 \description{
 Calculate Wilcox p-value or return preset values
