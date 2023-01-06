@@ -1,15 +1,21 @@
 #' Choose best matching cell type
 #'
-#' @param m.cts Cell type score
-#' @param unknown Threshold unknown
-#' @param uncertain Threshold uncertain
+#' @param m.cts Matrix containing the cell type scores. The rows represent the cell types, whereas the columns represent the samples.
+#' @param unknown If none of the probabilities is above this threshold,
+#' the cell type label is assigned to the class unknown.
+#' @param uncertain If the ratio between the largest and the second largest
+#' probability is below this threshold, the cell type label is assigned to the
+#' class uncertain for the major cell types.
+#' @return Data frame containing the best matching cell type for each sample.
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' result <- f_annot_ctgenes(m.cts, unknown, uncertain)
-#' }
+#' m.cts <- matrix(c(0.2, 0.001, 0.002, 0.1), nrow=2)
+#' colnames(m.cts) <- c("sample1", "sample2")
+#' rownames(m.cts) <- c("cell_type1", "cell_type2")
+#' f_annot_ctgenes(m.cts, 0.05, 0.1)
+
 f_annot_ctgenes <- function(m.cts, unknown, uncertain) {
   ct.annot <- apply(m.cts, 2, function(x) names(which.min(x)))
   ct.annot <- data.frame(barcodes = names(ct.annot),

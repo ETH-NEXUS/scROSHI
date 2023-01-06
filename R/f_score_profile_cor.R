@@ -2,17 +2,21 @@
 #'
 #' @param sce A SingleCellExperiment object containing the expression
 #' profiles of the single cell analysis.
-#' @param lprof List of profiles (= named expression vectors)
-#' @param min_genes Minimum number of genes
+#' @param lprof List of profiles (named expression vectors).
+#' @param min_genes Minimum number of genes.
 #' @param verbose Level of verbosity. Zero means silent, one makes a verbose output.
 #' @return Matrix containing the cell type scores.
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' result <- f_score_profile_cor(sce, lprof, min_genes = 5,verbose = 0)
-#' }
+#' data("test_sce_data")
+#' prof1 <- rpois(n = 20, lambda = 3)
+#' names(prof1) <- rownames(test_sce_data)[51:70]
+#' prof2 <- rpois(n = 20, lambda = 5)
+#' names(prof2) <-  rownames(test_sce_data)[71:90]
+#' lprof <- list(prof1 = prof1, prof2 = prof2)
+#' f_score_profile_cor(test_sce_data[,1:3], lprof, min_genes = 5, verbose = 0)
 
 f_score_profile_cor = function(sce, lprof, min_genes = 5, verbose = 0) {
   if(verbose == 1){

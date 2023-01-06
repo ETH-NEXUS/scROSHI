@@ -17,7 +17,7 @@ f_my_correlation_test(x, y, min_genes = 5)
 A numeric value representing the p value of the Spearman correlation test.
 }
 \description{
-Calculate spearman correlation p-value or return preset values
+Calculate spearman correlation p-value or return preset values.
 }
 \examples{
 f_my_correlation_test(rnorm(10,1,2),rnorm(10,5,2))

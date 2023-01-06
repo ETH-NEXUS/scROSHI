@@ -20,5 +20,5 @@ A numeric value representing the p value of the Wilcox test.
 Calculate Wilcox p-value or return preset values
 }
 \examples{
-f_my_wilcox_test(rnorm(10,1,2),rnorm(10,5,2))
+f_my_wilcox_test(rnorm(10, 1, 2), rnorm(10, 5, 2))
 }

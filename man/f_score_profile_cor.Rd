@@ -10,9 +10,9 @@ f_score_profile_cor(sce, lprof, min_genes = 5, verbose = 0)
 \item{sce}{A SingleCellExperiment object containing the expression
 profiles of the single cell analysis.}
 
-\item{lprof}{List of profiles (= named expression vectors)}
+\item{lprof}{List of profiles (named expression vectors).}
 
-\item{min_genes}{Minimum number of genes}
+\item{min_genes}{Minimum number of genes.}
 
 \item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
 }
@@ -23,7 +23,11 @@ Matrix containing the cell type scores.
 Calculate cell type score: U-test
 }
 \examples{
-\dontrun{
-result <- f_score_profile_cor(sce, lprof, min_genes = 5,verbose = 0)
-}
+data("test_sce_data")
+prof1 <- rpois(n = 20, lambda = 3)
+names(prof1) <- rownames(test_sce_data)[51:70]
+prof2 <- rpois(n = 20, lambda = 5)
+names(prof2) <-  rownames(test_sce_data)[71:90]
+lprof <- list(prof1 = prof1, prof2 = prof2)
+f_score_profile_cor(test_sce_data[,1:3], lprof, min_genes = 5, verbose = 0)
 }

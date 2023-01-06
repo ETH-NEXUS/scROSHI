@@ -23,7 +23,7 @@
 #' replaced with the cell type list BEFORE filtering for unique genes (default 5).
 #' @param min_var Minimum variance for highly variable genes (default 1.5).
 #' @param n_top_genes Maximum number of highly variable genes (default 2000).
-#' @param n_nn Number of nearest neighbors for umap for assignment of celltypes
+#' @param n_nn Number of nearest neighbors for umap for assignment of cell types
 #' (default 5).
 #' @param thresh_unknown If none of the probabilities is above this threshold,
 #' the cell type label is assigned to the class unknown (default 0.05).
@@ -42,8 +42,15 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' result <- scROSHI(sce_data,markerList,conf,output = "sce")
+#' \donttest{
+#' data("test_sce_data")
+#' data("config")
+#' data("marker_list")
+#'
+#' results <- scROSHI(sce_data = test_sce_data,
+#'                    celltype_lists = marker_list,
+#'                    type_config = config)
+#' table(results$celltype_final)
 #' }
 
 scROSHI <- function(sce_data,

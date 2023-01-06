@@ -50,7 +50,7 @@ replaced with the cell type list BEFORE filtering for unique genes (default 5).}
 
 \item{n_top_genes}{Maximum number of highly variable genes (default 2000).}
 
-\item{n_nn}{Number of nearest neighbors for umap for assignment of celltypes
+\item{n_nn}{Number of nearest neighbors for umap for assignment of cell types
 (default 5).}
 
 \item{thresh_unknown}{If none of the probabilities is above this threshold,
@@ -80,7 +80,14 @@ hierarchical nature of cell type relationship and does not require training or
 annotated data.
 }
 \examples{
-\dontrun{
-result <- scROSHI(sce_data,markerList,conf,output = "sce")
+\donttest{
+data("test_sce_data")
+data("config")
+data("marker_list")
+
+results <- scROSHI(sce_data = test_sce_data,
+                   celltype_lists = marker_list,
+                   type_config = config)
+table(results$celltype_final)
 }
 }

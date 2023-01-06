@@ -3,9 +3,9 @@
 #' @param sce A SingleCellExperiment object containing the expression
 #' profiles of the single cell analysis.
 #' @param gset Marker gene list for all cell types.
-#' @param min_genes Minimum number of genes
-#' @param gene_symbol Variable name in the row data of the SingleCellExperiment object containing the gene names
-#' @param count_data Assay name in the SingleCellExperiment object containing the count data
+#' @param min_genes Minimum number of genes.
+#' @param gene_symbol Variable name in the row data of the SingleCellExperiment object containing the gene names.
+#' @param count_data Assay name in the SingleCellExperiment object containing the count data.
 #' @param verbose Level of verbosity. Zero means silent, one makes a verbose output.
 #' @return Matrix containing the cell type scores. The rows represent the cell types, whereas the columns represent the samples.
 #'
@@ -14,10 +14,10 @@
 #' @examples
 #' \donttest{
 #' data("test_sce_data")
-#' gset <- list(cell_type1 = c("CD79A","TCL1A","VPREB3"),
-#' cell_type2 = c("FCER1A","CLEC10A","ENHO"))
-#' tmp <- f_score_ctgenes_U(test_sce_data, gset, count_data = "normcounts",
-#' gene_symbol = "SYMBOL", min_genes = 3,verbose = 0)
+#' gset <- list(cell_type1 = c("CD79A", "TCL1A", "VPREB3"),
+#' cell_type2 = c("FCER1A", "CLEC10A", "ENHO"))
+#' f_score_ctgenes_U(test_sce_data[,1:3], gset, count_data = "normcounts",
+#' gene_symbol = "SYMBOL", min_genes = 3, verbose = 0)
 #' }
 
 f_score_ctgenes_U <- function(sce, gset, count_data = "normcounts", gene_symbol = "SYMBOL", min_genes = 5,verbose = 0) {

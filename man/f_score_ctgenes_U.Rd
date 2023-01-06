@@ -19,11 +19,11 @@ profiles of the single cell analysis.}
 
 \item{gset}{Marker gene list for all cell types.}
 
-\item{count_data}{Assay name in the SingleCellExperiment object containing the count data}
+\item{count_data}{Assay name in the SingleCellExperiment object containing the count data.}
 
-\item{gene_symbol}{Variable name in the row data of the SingleCellExperiment object containing the gene names}
+\item{gene_symbol}{Variable name in the row data of the SingleCellExperiment object containing the gene names.}
 
-\item{min_genes}{Minimum number of genes}
+\item{min_genes}{Minimum number of genes.}
 
 \item{verbose}{Level of verbosity. Zero means silent, one makes a verbose output.}
 }
@@ -36,9 +36,9 @@ Calculate cell type score
 \examples{
 \donttest{
 data("test_sce_data")
-gset <- list(cell_type1 = c("CD79A","TCL1A","VPREB3"),
-cell_type2 = c("FCER1A","CLEC10A","ENHO"))
-tmp <- f_score_ctgenes_U(test_sce_data, gset, count_data = "normcounts",
-gene_symbol = "SYMBOL", min_genes = 3,verbose = 0)
+gset <- list(cell_type1 = c("CD79A", "TCL1A", "VPREB3"),
+cell_type2 = c("FCER1A", "CLEC10A", "ENHO"))
+f_score_ctgenes_U(test_sce_data[,1:3], gset, count_data = "normcounts",
+gene_symbol = "SYMBOL", min_genes = 3, verbose = 0)
 }
 }
