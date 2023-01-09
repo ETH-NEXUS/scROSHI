@@ -10,13 +10,16 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' data("test_sce_data")
+#' set.seed(123)
 #' prof1 <- rpois(n = 20, lambda = 3)
 #' names(prof1) <- rownames(test_sce_data)[51:70]
 #' prof2 <- rpois(n = 20, lambda = 5)
 #' names(prof2) <-  rownames(test_sce_data)[71:90]
 #' lprof <- list(prof1 = prof1, prof2 = prof2)
 #' f_score_profile_cor(test_sce_data[,1:3], lprof, min_genes = 5, verbose = 0)
+#' }
 
 f_score_profile_cor = function(sce, lprof, min_genes = 5, verbose = 0) {
   if(verbose == 1){
