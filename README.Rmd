@@ -38,7 +38,10 @@ scROSHI requires three input objects:
 
 *sce_data*
 
-A SingleCellExperiment object containing the expression profiles of the single cell analysis
+A `SingleCellExperiment` object containing the expression profiles of the single cell analysis.
+
+- `dimnames` need to be specified and rownames need to match the gene names in `celltype_list`.
+- A column named `barcodes` in `colData` of the SCE object is required.
 
 *celltype_lists*
 
