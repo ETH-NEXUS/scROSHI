@@ -2,6 +2,7 @@
 % Please edit documentation in R/scROSHI-package.R, R/scROSHI.R
 \docType{package}
 \name{scROSHI}
+\alias{scROSHI-package}
 \alias{scROSHI}
 \title{Robust Supervised Hierarchical Identification of Single Cells}
 \usage{
@@ -90,4 +91,15 @@ results <- scROSHI(sce_data = test_sce_data,
                    type_config = config)
 table(results$celltype_final)
 }
+}
+\author{
+\strong{Maintainer}: Dominik Burri \email{burri@nexus.ethz.ch} (\href{https://orcid.org/0000-0002-8131-9309}{ORCID})
+
+Authors:
+\itemize{
+  \item Dominik Burri \email{burri@nexus.ethz.ch} (\href{https://orcid.org/0000-0002-8131-9309}{ORCID})
+  \item Lars Bosshard \email{larsbosshard@gmail.com} (\href{https://orcid.org/0000-0002-4550-4777}{ORCID})
+  \item Michael Prummer \email{prummer@nexus.ethz.ch} (\href{https://orcid.org/0000-0001-9896-3929}{ORCID})
+}
+
 }

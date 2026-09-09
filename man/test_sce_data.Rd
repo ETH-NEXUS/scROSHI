@@ -8,8 +8,8 @@
 A SingleCellExperiment object with 3368 genes and 1316 cells
 }
 \source{
-scROSHI - robust supervised hierarchical identification of single cells
-\url{https://www.biorxiv.org/content/10.1101/2022.04.05.487176v1}
+scROSHI: robust supervised hierarchical identification of single cells
+\doi{10.1093/nargab/lqad058}
 }
 \usage{
 test_sce_data

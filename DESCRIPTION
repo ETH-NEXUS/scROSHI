@@ -18,12 +18,11 @@ Authors@R:
            email = "prummer@nexus.ethz.ch",
            comment = c(ORCID = "0000-0001-9896-3929")))
 Maintainer: Dominik Burri <burri@nexus.ethz.ch>
-Description: Identifying cell types based on expression profiles is a pillar of single cell analysis. 'scROSHI' identifies cell types based on expression profiles of single cell analysis by utilizing previously obtained cell type specific gene sets. It takes into account the hierarchical nature of cell type relationship and does not require training or annotated data. A detailed description of the method can be found at: Michael Prummer, Anne Bertolini, Lars Bosshard, Florian Barkmann, Josephine Yates, Valentina Boeva, The Tumor Profiler Consortium , Daniel Stekhoven, Franziska Singer, scROSHI: robust supervised hierarchical identification of single cells, NAR Genomics and Bioinformatics, Volume 5, Issue 2, June 2023, lqad058, <https://doi.org/10.1093/nargab/lqad058>.
+Description: Identifying cell types based on expression profiles is a pillar of single cell analysis. 'scROSHI' identifies cell types based on expression profiles of single cell analysis by utilizing previously obtained cell type specific gene sets. It takes into account the hierarchical nature of cell type relationship and does not require training or annotated data. A detailed description of the method can be found at: Michael Prummer, Anne Bertolini, Lars Bosshard, Florian Barkmann, Josephine Yates, Valentina Boeva, The Tumor Profiler Consortium , Daniel Stekhoven, Franziska Singer, scROSHI: robust supervised hierarchical identification of single cells, NAR Genomics and Bioinformatics, Volume 5, Issue 2, June 2023, lqad058, <doi:10.1093/nargab/lqad058>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
 Imports: 
     limma,
     S4Vectors,
@@ -35,4 +34,5 @@ Imports:
 Depends: 
     R (>= 3.6)
 biocViews:
-LazyDataCompression:xz
+LazyDataCompression: xz
+Config/roxygen2/version: 8.1.0
