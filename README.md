@@ -1,7 +1,3 @@
----
-output: github_document
----
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -10,7 +6,6 @@ output: github_document
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/scROSHI)](https://cran.r-project.org/package=scROSHI)
-<!-- License (shields.io) -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
