@@ -194,6 +194,12 @@ scROSHI <- function(sce_data,
   idx <- match(all.ct.genes, rownames(tmp))
   idx <- idx[!is.na(idx)]
   tmp <- tmp[idx, ]
+
+  # Fix sparse matrix
+  if (is(tmp, "sparseMatrix")) {
+    tmp <- Matrix::as.matrix(tmp)
+  }
+
   r.umap <- uwot::umap(t(tmp), n_neighbors = n_nn, spread = 1, min_dist = 0.01,
                  #y = sce_data$celltype.major,
                  ret_nn = T)
