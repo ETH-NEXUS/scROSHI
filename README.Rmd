@@ -29,16 +29,17 @@ Michael Prummer, Anne Bertolini, Lars Bosshard, Florian Barkmann, Josephine Yate
 
 From CRAN: [scROSHI](https://cran.r-project.org/package=scROSHI)
 
-```r 
+```r
 install.packages("scROSHI")
 ```
 
-You can install the development version from [GitHub](https://github.com/) (required R version >= 3.6) with:
+You can install the development version from [GitHub](https://github.com/ETH-NEXUS/scROSHI) (required R version >= 3.6) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("ETH-NEXUS/scROSHI")
 ```
+
 ## Example
 
 This is a basic example for the scROSHI function
