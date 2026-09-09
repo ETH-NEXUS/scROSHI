@@ -33,6 +33,6 @@ Imports:
     utils,
     uwot
 Depends: 
-    R (>= 3.60)
+    R (>= 3.6)
 biocViews:
 LazyDataCompression:xz
