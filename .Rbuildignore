@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^README\.Rmd$
+^\.pixi$
+^pixi\.lock$
+^pixi\.toml$
